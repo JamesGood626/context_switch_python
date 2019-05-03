@@ -1,12 +1,16 @@
 import os
 import subprocess
 import webbrowser
-from paths import PREVIEW_EXE_PATH
+from paths import PREVIEW_EXE_PATH, ITERM_EXE_PATH
 from contexts import context_dict
 
 
 def open_ebooks(paths):
     subprocess.Popen([PREVIEW_EXE_PATH, *paths])
+
+
+def open_terminals(paths):
+    subprocess.Popen([ITERM_EXE_PATH, *paths])
 
 
 def open_project_in_vscode(path):
@@ -36,6 +40,7 @@ def handle_opening_contexts(context):
     if urls_len > 0:
         loop_and_open_tabs(context["urls"])
     if projects_len > 0:
+        open_terminals(context["projects"])
         loop_and_open_projects(context["projects"])
 
 
